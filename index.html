@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Player de Vídeo</title>
+
+<link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+
+<style>
+body {
+  background: #111;
+  color: white;
+  text-align: center;
+  font-family: Arial;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+button {
+  margin: 10px;
+  padding: 12px 25px;
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #ff1a1a;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🎬 Player de Vídeos</h2>
+
+<div class="container">
+
+  <!-- Player -->
+  <video
+    id="meuVideo"
+    class="video-js vjs-default-skin"
+    controls
+    width="600"
+  ></video>
+
+  <!-- Botões -->
+  <div>
+    <button onclick="anterior()">⏮ Anterior</button>
+    <button onclick="proximo()">Próximo ⏭</button>
+  </div>
+
+</div>
+
+<script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+
+<script>
+var lista = ["v1.mp4", "v2.mp4", "v3.mp4", "v4.mp4"];
+var index = 0;
+
+var player = videojs('meuVideo');
+
+// carregar primeiro vídeo
+player.src({ type: "video/mp4", src: lista[index] });
+
+// botão próximo
+function proximo() {
+  index++;
+  if (index >= lista.length) index = 0;
+  player.src({ type: "video/mp4", src: lista[index] });
+  player.play();
+}
+
+// botão anterior
+function anterior() {
+  index--;
+  if (index < 0) index = lista.length - 1;
+  player.src({ type: "video/mp4", src: lista[index] });
+  player.play();
+}
+</script>
+
+</body>
+</html>
